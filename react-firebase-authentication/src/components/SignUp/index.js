@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import { compose } from 'recompose';
 
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
@@ -22,16 +21,6 @@ const INITIAL_STATE = {
   error: null,
 };
 
-const ERROR_CODE_ACCOUNT_EXISTS = 'This email-already-in-use';
-
-const ERROR_MSG_ACCOUNT_EXISTS = `
-  An account with this E-Mail address already exists.
-  Try to login with this account instead. If you think the
-  account is already used from one of the social logins, try
-  to sign in with one of them. Afterward, associate your accounts
-  on your personal account page.
-`;
-
 class SignUpFormBase extends Component {
   constructor(props) {
     super(props);
@@ -41,35 +30,32 @@ class SignUpFormBase extends Component {
 
   onSubmit = event => {
     const { username, email, passwordOne, isAdmin } = this.state;
-    const roles = {};
+    const roles = [];
 
     if (isAdmin) {
-      roles[ROLES.ADMIN] = ROLES.ADMIN;
+      roles.push(ROLES.ADMIN);
     }
 
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
         // Create a user in your Firebase realtime database
-        return this.props.firebase.user(authUser.user.uid)
-        .set({
-          username,
-          email,
-          
-        });
-      })
-      .then(() => {
-        return this.props.firebase.doSendEmailVerification();
-      })
-      .then(() => {
-        this.setState({ ...INITIAL_STATE });
-        this.props.history.push(ROUTES.HOME);
+        this.props.firebase
+          .user(authUser.user.uid)
+          .set({
+            username,
+            email,
+            roles,
+          })
+          .then(() => {
+            this.setState({ ...INITIAL_STATE });
+            this.props.history.push(ROUTES.HOME);
+          })
+          .catch(error => {
+            this.setState({ error });
+          });
       })
       .catch(error => {
-        if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
-          error.message = ERROR_MSG_ACCOUNT_EXISTS;
-        }
-
         this.setState({ error });
       });
 
@@ -154,9 +140,6 @@ const SignUpLink = () => (
     Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
   </p>
 );
-const SignUpForm = compose(
-  withRouter,
-  withFirebase,
-)(SignUpFormBase);
+const SignUpForm = withRouter(withFirebase(SignUpFormBase));
 export default SignUpPage;
 export { SignUpForm, SignUpLink };

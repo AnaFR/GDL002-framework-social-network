@@ -71,7 +71,7 @@ const UserList = ({ users }) => (
   </ul>
 );
 
-const condition = authUser => authUser && !!authUser.roles[ROLES.ADMIN];
+const condition = authUser => authUser && !!authUser
 
 export default compose(
   withAuthorization(condition),
