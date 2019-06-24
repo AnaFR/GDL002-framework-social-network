@@ -71,7 +71,7 @@ const UserList = ({ users }) => (
   </ul>
 );
 
-const condition = authUser => authUser && !!authUser
+const condition = authUser => authUser && !!authUser  /// es por donde esta el error de admin
 
 export default compose(
   withAuthorization(condition),
