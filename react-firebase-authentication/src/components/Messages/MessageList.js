@@ -12,7 +12,7 @@ const MessageList = ({
     {messages.map(message => (
       <MessageItem
         authUser={authUser}
-        key={message.uid}
+        key={message.username}
         message={message}
         onEditMessage={onEditMessage}
         onRemoveMessage={onRemoveMessage}

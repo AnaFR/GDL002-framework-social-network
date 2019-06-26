@@ -46,7 +46,7 @@ class MessageItem extends Component {
           </span>
         )}
 
-        {authUser.uid === message.userId && (
+        {authUser.username === message.userId && (
           <span>
             {editMode ? (
               <span>
@@ -60,7 +60,7 @@ class MessageItem extends Component {
             {!editMode && (
               <button
                 type="button"
-                onClick={() => onRemoveMessage(message.uid)}
+                onClick={() => onRemoveMessage(message.username)}
               >
                 Delete
               </button>
