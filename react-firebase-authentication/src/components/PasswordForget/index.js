@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
+import Computer from "../../img/computer.jpg";
+
 
 const PasswordForgetPage = () => (
   <div>
@@ -48,7 +50,10 @@ class PasswordForgetFormBase extends Component {
     const isInvalid = email === '';
 
     return (
+      
       <form onSubmit={this.onSubmit}>
+                <img className="loginbkg" src={Computer} alt="Computer" />
+
         <input
           name="email"
           value={this.state.email}
@@ -66,14 +71,19 @@ class PasswordForgetFormBase extends Component {
   }
 }
 
-const PasswordForgetLink = () => (
-  <p>
-    <Link to={ROUTES.PASSWORD_FORGET}>Forgot Password?</Link>
-  </p>
-);
+
+
+
+
+
+// const PasswordForgetLink = () => (
+//   <p>
+//     <Link to={ROUTES.PASSWORD_FORGET}>Forgot Password?</Link>
+//   </p>
+// );
 
 export default PasswordForgetPage;
 
 const PasswordForgetForm = withFirebase(PasswordForgetFormBase);
 
-export { PasswordForgetForm, PasswordForgetLink };
+export { PasswordForgetForm };
