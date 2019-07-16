@@ -7,7 +7,7 @@ import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
 import Logo from "../../img/survey.png";
 
-
+import { BrowserRouter } from 'react-router-dom';
 import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
   MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon } from "mdbreact";
 
@@ -62,10 +62,6 @@ const NavigationAuth = ({ authUser }) => (
 //     </li>
 //   </ul>
 // );
-
-
-
-
 
 
 class NavigationNonAuth extends Component {

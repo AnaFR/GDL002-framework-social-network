@@ -28,8 +28,7 @@ class Firebase {
     /* Social Sign In Method Provider */
 
     this.googleProvider = new app.auth.GoogleAuthProvider();
-    // this.facebookProvider = new app.auth.FacebookAuthProvider();
-    // this.twitterProvider = new app.auth.TwitterAuthProvider();
+  
   }
 
   // *** Auth API ***
@@ -43,11 +42,7 @@ class Firebase {
   doSignInWithGoogle = () =>
     this.auth.signInWithPopup(this.googleProvider);
 
-  // doSignInWithFacebook = () =>
-  //   this.auth.signInWithPopup(this.facebookProvider);
-
-  // doSignInWithTwitter = () =>
-  //   this.auth.signInWithPopup(this.twitterProvider);
+ 
 
   doSignOut = () => this.auth.signOut();
 
@@ -103,6 +98,11 @@ class Firebase {
   message = uid => this.db.ref(`messages/${uid}`);
 
   messages = () => this.db.ref('messages');
+
+  
+  //form = uid => this.db.ref(`messages/${uid}`);
+
+  form = () => this.db.ref('form');
 }
 
 export default Firebase;

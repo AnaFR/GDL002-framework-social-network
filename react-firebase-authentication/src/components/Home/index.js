@@ -1,17 +1,18 @@
-import React from 'react';
-import { compose } from 'recompose';
-
-import { withAuthorization, withEmailVerification } from '../Session';
-
-
-import Messages from '../Messages';
+import React from "react";
+import { compose } from "recompose";
+import { withAuthorization, withEmailVerification } from "../Session";
+import Messages from "../Messages";
+import Record from "../MedicalRecord";
+import MedicalRecord from "../MedicalRecord";
 
 const HomePage = () => (
   <div>
     <h1>Home Page</h1>
-    <p>The Home Page is accessible by every signed in user.</p>
+    <p>The Home Page </p>
 
     <Messages />
+    <Record/>
+    
   </div>
 );
 
@@ -19,7 +20,7 @@ const condition = authUser => !!authUser;
 
 export default compose(
   withEmailVerification,
-  withAuthorization(condition),
+  withAuthorization(condition)
 )(HomePage);
 
 
@@ -27,20 +28,3 @@ export default compose(
 
 
 
-
-// import React from 'react';
-// import { withAuthorization } from '../Session';
-// import Messages from '../Messages';
-
-// const HomePage = () => (
-//   <div>
-//     <h1>Home Page</h1>
-//     <p>This is your Medical Record.</p>
-//     <Messages />
-//   </div>
-// );
-
-
-
-// const condition = authUser => !!authUser;
-// export default withAuthorization(condition)(HomePage);

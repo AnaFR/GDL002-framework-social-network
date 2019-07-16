@@ -15,13 +15,9 @@ import {
   Icon,
   Header,
   Message,
+  
   Segment
 } from "semantic-ui-react";
-
-
-
-
-
 
 const SignInPage = () => (
   <div>
@@ -89,7 +85,7 @@ class SignInFormBase extends Component {
           <Header as="h2" textAlign="center">
             <br />
             <br />
-             My Medical Record
+            My Medical Record
           </Header>
           <Segment onSubmit={this.onSubmit}>
             <Form size="large">
@@ -127,7 +123,9 @@ class SignInFormBase extends Component {
             </Form>
           </Segment>
           <Message>
-             <Link to={ROUTES.SIGN_UP}>Register Now</Link>  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;
+            <Link to={ROUTES.SIGN_UP}>Register Now</Link> &nbsp; &nbsp; &nbsp;
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
             <Link to={ROUTES.PASSWORD_FORGET}>Forgot Password?</Link>
           </Message>
         </Grid.Column>
@@ -173,10 +171,13 @@ class SignInGoogleBase extends Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-       <center> or Sign Up with.
-       <Button type = "submit"      icon>
-    <Icon name='google' />
-  </Button></center>
+        <center>
+          {" "}
+          or Sign Up with.
+          <Button type="submit" icon>
+            <Icon name="google" />
+          </Button>
+        </center>
         {error && <p>{error.message}</p>}
       </form>
     );
