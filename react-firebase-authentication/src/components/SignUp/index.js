@@ -134,7 +134,7 @@ class SignUpFormBase extends Component {
               />
               <Form.Input
                 fluid
-                icon="user"
+                icon="mail"
                 iconPosition="left"
                 name="email"
                 value={email}
@@ -154,7 +154,7 @@ class SignUpFormBase extends Component {
               />
               <Form.Input
                 fluid
-                icon="lock"
+                icon="warning sign"
                 iconPosition="left"
                 name="passwordTwo"
                 value={passwordTwo}

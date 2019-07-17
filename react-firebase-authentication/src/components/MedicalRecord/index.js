@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 // import firebaseConf from './Firebase';
-import { withFirebase } from '../Firebase';
-class Record extends Component {
+import { withFirebase } from "../Firebase";
 
+class Record extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,7 +19,7 @@ class Record extends Component {
     });
     setTimeout(() => {
       this.setState({ alert: false });
-    }, 4000)
+    }, 4000);
   }
 
   resetForm() {
@@ -27,12 +27,24 @@ class Record extends Component {
   }
 
   componentWillMount() {
-    this.props.firebase.form().orderByKey().limitToLast(6);
-    this.props.firebase.form().on('child_added', snapshot => {
-      const { name, email, city, phone, message } = snapshot.val();
-      const data = { name, email, city, phone, message };
+    this.props.firebase
+      .form()
+      .orderByKey()
+      .limitToLast(6);
+    this.props.firebase.form().on("child_added", snapshot => {
+      const {
+        name,
+        email,
+        city,
+        phone,
+        message,
+        age,
+        weight,
+        height
+      } = snapshot.val();
+      const data = { name, email, city, phone, message, age, weight, height };
       this.setState({ form: [data].concat(this.state.form) });
-    })
+    });
   }
 
   sendMessage(e) {
@@ -40,85 +52,182 @@ class Record extends Component {
     const params = {
       name: this.inputName.value,
       email: this.inputEmail.value,
-      city: this.inputCity.value,
       phone: this.inputPhone.value,
-      message: this.textAreaMessage.value
+      sex: this.inputSex.value,
+    
+      message: this.textAreaMessage.value,
+      age: this.inputAge.value,
+      weight: this.inputWeight.value,
+      height: this.inputHeight.value
     };
-    if (params.name && params.email && params.phone && params.phone && params.message) {
-        this.props.firebase.form().push(params).then(() => {
-        this.showAlert('success', 'Your message was sent successfull');
-      }).catch(() => {
-        this.showAlert('danger', 'Your message could not be sent');
-      });
+    if (
+      params.name &&
+      params.email &&
+      params.phone &&
+      params.sex &&
+      params.message &&
+      params.age &&
+      params.weight &&
+      params.height
+    ) {
+      this.props.firebase
+        .form()
+        .push(params)
+        .then(() => {
+          this.showAlert("success", "Your Medical Record was sent successfull");
+        })
+        .catch(() => {
+          this.showAlert("danger", "Your Medical Record could not be sent");
+        });
       this.resetForm();
     } else {
-      this.showAlert('warning', 'Please fill the form');
-    };
+      this.showAlert("warning", "Please fill the form");
+    }
   }
 
   render() {
     return (
       <div>
-        {this.state.alert && <div className={`alert alert-${this.state.alertData.type}`} role='alert'>
-          <div className='container'>
-            {this.state.alertData.message}
+        {this.state.alert && (
+          <div
+            className={`alert alert-${this.state.alertData.type}`}
+            role="alert"
+          >
+            <div className="container">{this.state.alertData.message}</div>
           </div>
-        </div>}
-        <div className='container' style={{ padding: `40px 0px` }}>
-          <div className='row'>
-            <div className='col-sm-4'>
-              <h2>Contact Form</h2>
-              <form onSubmit={this.sendMessage.bind(this)} ref='contactForm' >
-                <div className='form-group'>
-                  <label htmlFor='name'>Name</label>
-                  <input type='text' className='form-control' id='name' placeholder='Name' ref={name => this.inputName = name} />
+        )}
+        <div className="container" style={{ padding: `50px 0px` }}>
+          <div className="row">
+            <div className="col-sm-4">
+              <h2>My medical Record</h2>
+              <form onSubmit={this.sendMessage.bind(this)} ref="contactForm">
+                <div className="form-group">
+                  <label htmlFor="name">Name</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="name"
+                    placeholder="Name"
+                    ref={name => (this.inputName = name)}
+                  />
                 </div>
-                <div className='form-group'>
-                  <label htmlFor='exampleInputEmail1'>Email</label>
-                  <input type='email' className='form-control' id='email' placeholder='Email' ref={email => this.inputEmail = email} />
+                <div className="form-group">
+                  <label htmlFor="exampleInputEmail1">Email</label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    id="email"
+                    placeholder="Email"
+                    ref={email => (this.inputEmail = email)}
+                  />
                 </div>
-                <div className='form-group'>
-                  <label htmlFor='city'>City</label>
-                  <select className='form-control' id='city' ref={city => this.inputCity = city}>
-                    <option value='México'>México</option>
-                    <option value='Guadalajara'>Guadalajara</option>
-                    <option value='Monterrey'>Monterrey</option>
+                <div className="form-group">
+                  <label htmlFor="phone">Phone</label>
+                  <input
+                    type="number"
+                    className="form-control"
+                    id="phone"
+                    placeholder="+52 1"
+                    ref={phone => (this.inputPhone = phone)}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="sex">Sex</label>
+                  <select
+                    className="form-control"
+                    id="sex"
+                    ref={sex => (this.inputSex = sex)}
+                  >
+                    <option value="México">Female</option>
+                    <option value="Guadalajara">Male</option>
                   </select>
                 </div>
-                <div className='form-group'>
-                  <label htmlFor='phone'>Phone</label>
-                  <input type='number' className='form-control' id='phone' placeholder='+52 1' ref={phone => this.inputPhone = phone} />
+
+                <div className="form-group">
+                  <label htmlFor="age">Age</label>
+                  <input
+                    type="number"
+                    className="form-control"
+                    id="age"
+                    placeholder="age"
+                    ref={age => (this.inputAge = age)}
+                  />
                 </div>
-                <div className='form-group'>
-                  <label htmlFor='message'>Message</label>
-                  <textarea className='form-control' id='message' rows='3' ref={message => this.textAreaMessage = message}></textarea>
+
+
+
+
+
+
+
+                
+                <div className="form-group">
+                  <label htmlFor="weight">Weight(Kg)</label>
+                  <input
+                    type="number"
+                    className="form-control"
+                    id="weight"
+                    placeholder="weight"
+                    ref={weight => (this.inputWeight = weight)}
+                  />
                 </div>
-                <button type='submit' className='btn btn-primary'>Send</button>
+                <div className="form-group">
+                  <label htmlFor="height">Height(mts)</label>
+                  <input
+                    type="height"
+                    className="form-control"
+                    id="height"
+                    placeholder="height"
+                    ref={height => (this.inputHeight = height)}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="message">Medical Diganosis</label>
+                  <textarea
+                    className="form-control"
+                    id="message"
+                    rows="1"
+                    ref={message => (this.textAreaMessage = message)}
+                  />
+                </div>
+                <button type="submit" className="btn btn-primary">
+                  Send
+                </button>
               </form>
             </div>
-            <div className='col-sm-8'>
-              <div className='row'>
-                {this.state.form.map(form =>
-                  <div className='col-sm-6' key={form.phone} style={{ margin: `0px 0px 30px 0px` }}>
-                    <div className='card'>
-                      <div className='card-body'>
-                        <h4 className='card-title'>{form.name}</h4>
-                        <h6 className='card-subtitle mb-2 text-muted'>{form.city}</h6>
-                        <p className='card-text'>{form.message}</p>
-                        <a href={`tel:${form.phone}`} className='card-link'>{form.phone}</a>
-                        <a href={`mailto:${form.email}`} className='card-link'>{form.email}</a>
+            <div className="col-sm-8">
+              <div className="row">
+                {this.state.form.map(form => (
+                  <div
+                    className="col-sm-6"
+                    key={form.phone}
+                    style={{ margin: `0px 0px 30px 0px` }}
+                  >
+                    <div className="card">
+                      <div className="card-body">
+                        <h4 className="card-title">{form.name}</h4>
+                        <h6 className="card-subtitle mb-2 text-muted">
+                          {form.city}
+                        </h6>
+                        <p className="card-text">{form.message}</p>
+                        <a href={`tel:${form.phone}`} className="card-link">
+                          {form.phone}
+                        </a>
+                        <a href={`age:${form.age}`} className="card-link">
+                          {form.age}
+                        </a>
                       </div>
                     </div>
-                  </div>)}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </div>
-        <div className='alert alert-info fixed-bottom'>
-          <div className='container'>
-            <div className='row'>
-              <div className='col-sm-12'>
-              </div>
+        <div className="alert alert-info fixed-bottom">
+          <div className="container">
+            <div className="row">
+              <div className="col-sm-12" />
             </div>
           </div>
         </div>
@@ -127,4 +236,4 @@ class Record extends Component {
   }
 }
 
-export default withFirebase(Record)  ;
+export default withFirebase(Record);

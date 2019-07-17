@@ -7,10 +7,11 @@ import MedicalRecord from "../MedicalRecord";
 
 const HomePage = () => (
   <div>
-    <h1>Home Page</h1>
-    <p>The Home Page </p>
+    {/* <h1>Home Page</h1>
+    <p>The Home Page </p> */}
 
-    <Messages />
+    {/* <Messages /> */}   
+    
     <Record/>
     
   </div>

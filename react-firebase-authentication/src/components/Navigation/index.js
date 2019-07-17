@@ -1,28 +1,33 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import { AuthUserContext } from '../Session';
-import SignOutButton from '../SignOut';
-import * as ROUTES from '../../constants/routes';
-import * as ROLES from '../../constants/roles';
+import { AuthUserContext } from "../Session";
+import SignOutButton from "../SignOut";
+import * as ROUTES from "../../constants/routes";
+import * as ROLES from "../../constants/roles";
 import Logo from "../../img/survey.png";
 
-import { BrowserRouter } from 'react-router-dom';
-import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
-  MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon } from "mdbreact";
-
-
-
-
+import { BrowserRouter } from "react-router-dom";
+import {
+  MDBNavbar,
+  MDBNavbarBrand,
+  MDBNavbarNav,
+  MDBNavItem,
+  MDBNavLink,
+  MDBNavbarToggler,
+  MDBCollapse,
+  MDBDropdown,
+  MDBNav,
+  MDBDropdownToggle,
+  MDBDropdownMenu,
+  MDBDropdownItem,
+  MDBIcon
+} from "mdbreact";
 
 const Navigation = () => (
   <AuthUserContext.Consumer>
     {authUser =>
-      authUser ? (
-        <NavigationAuth authUser={authUser} />
-      ) : (
-        <NavigationNonAuth />
-      )
+      authUser ? <NavigationAuth authUser={authUser} /> : <NavigationNonAuth />
     }
   </AuthUserContext.Consumer>
 );
@@ -52,6 +57,21 @@ const NavigationAuth = ({ authUser }) => (
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // const NavigationNonAuth = () => (
 //   <ul>
 //     <li>
@@ -63,61 +83,40 @@ const NavigationAuth = ({ authUser }) => (
 //   </ul>
 // );
 
-
 class NavigationNonAuth extends Component {
-state = {
-  isOpen: false
-};
+  state = {
+    isOpen: false
+  };
 
-toggleCollapse = () => {
-  this.setState({ isOpen: !this.state.isOpen });
-}
+  toggleCollapse = () => {
+    this.setState({ isOpen: !this.state.isOpen });
+  };
 
-render() {
-  return (
-    <MDBNavbar color="default-color" dark expand="md">
-      <MDBNavbarBrand>
-      <img  src={Logo} alt="Logo" width="50" height= "30" />
+  render() {
+    return (
+      <MDBNavbar color="default-color" dark expand="md">
+        <MDBNavbarBrand>
+          <img src={Logo} alt="Logo" width="50" height="30" />
 
-        {/* <strong className="white-text">MMR</strong> */}
-      </MDBNavbarBrand>
-      <MDBNavbarToggler onClick={this.toggleCollapse} />
-      <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
-        <MDBNavbarNav left>
-          <MDBNavItem active>
-            <MDBNavLink to={ROUTES.LANDING}>Welcome</MDBNavLink>
-          </MDBNavItem>
-          <MDBNavItem>
-            <MDBNavLink to={ROUTES.SIGN_IN}>Sign In</MDBNavLink>
-          </MDBNavItem>
-          <MDBNavItem>
-            {/* <MDBNavLink to="#!">Pricing</MDBNavLink> */}
-          </MDBNavItem>
-          <MDBNavItem>
-            <MDBDropdown>
-              
-            </MDBDropdown>
-          </MDBNavItem>
-        </MDBNavbarNav>
-      
-      </MDBCollapse>
-    </MDBNavbar>
+          {/* <strong className="white-text">MMR</strong> */}
+        </MDBNavbarBrand>
+        <MDBNavbarToggler onClick={this.toggleCollapse} />
+        <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
+          <MDBNavbarNav left>
+            <MDBNavItem active>
+              <MDBNavLink to={ROUTES.LANDING}>Welcome</MDBNavLink>
+            </MDBNavItem>
+            <MDBNavItem>
+              <MDBNavLink to={ROUTES.SIGN_IN}>Sign In</MDBNavLink>
+            </MDBNavItem>
+            <MDBNavItem>
+              <MDBDropdown />
+            </MDBNavItem>
+          </MDBNavbarNav>
+        </MDBCollapse>
+      </MDBNavbar>
     );
   }
 }
 
 export default Navigation;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
