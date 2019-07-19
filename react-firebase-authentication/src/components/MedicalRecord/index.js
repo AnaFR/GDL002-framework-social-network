@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-// import firebaseConf from './Firebase';
+
 import { withFirebase } from "../Firebase";
+
 
 class Record extends Component {
   constructor(props) {
@@ -205,16 +206,16 @@ class Record extends Component {
                   >
                     <div className="card">
                       <div className="card-body">
-                        <h4 className="card-title">{form.name}</h4>
+                        <h8 className="card-title">{"Name:"   +  "     " + form.name}</h8>
                         <h6 className="card-subtitle mb-2 text-muted">
-                          {form.city}
+                          {"Email:"  +  "      " + form.email}
                         </h6>
-                        <p className="card-text">{form.message}</p>
+                        <p className="card-text">{"DX:" + "    "  + form.message}</p>
                         <a href={`tel:${form.phone}`} className="card-link">
-                          {form.phone}
+                          {"Phone:"  +   "   " + form.phone}
                         </a>
                         <a href={`age:${form.age}`} className="card-link">
-                          {form.age}
+                          {form.age + "   " + "years"}
                         </a>
                       </div>
                     </div>
