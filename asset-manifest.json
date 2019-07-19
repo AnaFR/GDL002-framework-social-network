@@ -1,15 +1,23 @@
 {
   "files": {
-    "main.css": "/GDL002-framework-social-network/static/css/main.1b398baf.chunk.css",
-    "main.js": "/GDL002-framework-social-network/static/js/main.57b69804.chunk.js",
-    "main.js.map": "/GDL002-framework-social-network/static/js/main.57b69804.chunk.js.map",
+    "main.css": "/GDL002-framework-social-network/static/css/main.7970ed36.chunk.css",
+    "main.js": "/GDL002-framework-social-network/static/js/main.4416b71c.chunk.js",
+    "main.js.map": "/GDL002-framework-social-network/static/js/main.4416b71c.chunk.js.map",
     "runtime~main.js": "/GDL002-framework-social-network/static/js/runtime~main.33323341.js",
     "runtime~main.js.map": "/GDL002-framework-social-network/static/js/runtime~main.33323341.js.map",
-    "static/js/2.15bb3818.chunk.js": "/GDL002-framework-social-network/static/js/2.15bb3818.chunk.js",
-    "static/js/2.15bb3818.chunk.js.map": "/GDL002-framework-social-network/static/js/2.15bb3818.chunk.js.map",
+    "static/css/2.5924a6e9.chunk.css": "/GDL002-framework-social-network/static/css/2.5924a6e9.chunk.css",
+    "static/js/2.e37d4ffe.chunk.js": "/GDL002-framework-social-network/static/js/2.e37d4ffe.chunk.js",
+    "static/js/2.e37d4ffe.chunk.js.map": "/GDL002-framework-social-network/static/js/2.e37d4ffe.chunk.js.map",
     "index.html": "/GDL002-framework-social-network/index.html",
-    "precache-manifest.99bc0e0a8d4d2b013b4ae5c86caccb44.js": "/GDL002-framework-social-network/precache-manifest.99bc0e0a8d4d2b013b4ae5c86caccb44.js",
+    "precache-manifest.c3514121b99890e4ff191b64d0b7f688.js": "/GDL002-framework-social-network/precache-manifest.c3514121b99890e4ff191b64d0b7f688.js",
     "service-worker.js": "/GDL002-framework-social-network/service-worker.js",
-    "static/css/main.1b398baf.chunk.css.map": "/GDL002-framework-social-network/static/css/main.1b398baf.chunk.css.map"
+    "static/css/2.5924a6e9.chunk.css.map": "/GDL002-framework-social-network/static/css/2.5924a6e9.chunk.css.map",
+    "static/css/main.7970ed36.chunk.css.map": "/GDL002-framework-social-network/static/css/main.7970ed36.chunk.css.map",
+    "static/media/mdb.css": "/GDL002-framework-social-network/static/media/arrow_right.8ef6a08c.svg",
+    "static/media/semantic.min.css": "/GDL002-framework-social-network/static/media/outline-icons.ef60a4f6.woff",
+    "static/media/computer.jpg": "/GDL002-framework-social-network/static/media/computer.f71e9b9a.jpg",
+    "static/media/corusel2.jpg": "/GDL002-framework-social-network/static/media/corusel2.2278336a.jpg",
+    "static/media/all.min.css": "/GDL002-framework-social-network/static/media/fa-solid-900.f14c3b2f.ttf",
+    "static/media/survey.png": "/GDL002-framework-social-network/static/media/survey.933d2776.png"
   }
 }
